@@ -1,0 +1,23 @@
+---
+title: "Diabetes readmission"
+author: "Roshanak"
+date: "4/2/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load_libraries}
+library(tidyverse)
+
+```
+
+```{r import_data}
+diabetic_data <- read_csv("diabetic_data.csv", col_names = T)
+x <- diabetic_data
+glimpse(x)
+```
+
+
