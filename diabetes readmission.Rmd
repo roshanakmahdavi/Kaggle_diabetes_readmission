@@ -20,4 +20,28 @@ x <- diabetic_data
 glimpse(x)
 ```
 
+```{r clean_data}
+
+for_model <- x%>%
+  mutate(gender =ifelse(gender=='Unknown/Invalid', NA, gender),
+         race   =ifelse(race== '?', NA, race),
+         readmitted   =ifelse(readmitted %in% c('<30','>30'), 1, 0) ) %>%
+  select(encounter_id, gender, race, readmitted, admission_type_id, diabetesMed, discharge_disposition_id, time_in_hospital) %>%
+  drop_na()
+
+```
+
+```{r split}
+set.seed(123)
+train <- for_model %>%
+  sample_frac(size=0.8, replace=F)
+
+test <- for_model %>%
+  anti_join(train, by="encounter_id" )
+
+```
+
+
+
+
 
